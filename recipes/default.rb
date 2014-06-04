@@ -29,7 +29,7 @@ node[:deploy].each do |application, deploy|
     app application
   end
   
-  file "/etc/apache2/conf.d/#{application}" do
+  file "#{node[:apache][:dir]}/conf.d/#{application}" do
     content "Include #{deploy[:current_path]}/vhosts/sites/"
   end
   
