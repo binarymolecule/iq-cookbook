@@ -1,6 +1,13 @@
 include_recipe 'deploy'
 include_recipe "mod_php5_apache2"
 include_recipe "mod_php5_apache2::php"
+include_recipe "apache2::mod_proxy_http"
+include_recipe "apache2::mod_proxy"
+include_recipe "apache2::mod_auth_basic"
+include_recipe "apache2::mod_env"
+include_recipe "apache2::mod_expires"
+include_recipe "apache2::mod_rewrite"
+include_recipe "apache2::mod_ssl"
 
 node[:deploy].each do |application, deploy|
   unless application == "iq" and deploy[:application_type] == "other"
