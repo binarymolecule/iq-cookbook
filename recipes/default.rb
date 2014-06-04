@@ -41,4 +41,8 @@ node[:deploy].each do |application, deploy|
   link "/srv/www/iq/staging" do
     to "#{deploy[:current_path]}/project"
   end
+  
+  link "/var/log/apache2" do
+    to "/var/log/httpd"
+  end
 end
