@@ -28,6 +28,8 @@ node[:deploy].each do |application, deploy|
   
   file "#{node[:apache][:dir]}/conf.d/#{application}" do
     content "Include #{deploy[:current_path]}/vhosts/sites/"
+    group deploy[:group]
+    owner deploy[:owner]
   end
   
   template "#{node[:apache][:dir]}/conf.d/sni" do
@@ -39,14 +41,20 @@ node[:deploy].each do |application, deploy|
   
   link "/srv/www/iq/vhosts" do
     to "#{deploy[:current_path]}/vhosts"
+    group deploy[:group]
+    owner deploy[:owner]
   end
   
   link "/srv/www/iq/production" do
     to "#{deploy[:current_path]}/project"
+    group deploy[:group]
+    owner deploy[:owner]
   end
   
   link "/srv/www/iq/staging" do
     to "#{deploy[:current_path]}/project"
+    group deploy[:group]
+    owner deploy[:owner]
   end
   
   link "/var/log/apache2" do
