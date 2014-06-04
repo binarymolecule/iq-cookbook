@@ -1,13 +1,3 @@
-#
-# Cookbook Name:: iq
-# Recipe:: default
-#
-# Copyright (C) 2014 YOUR_NAME
-#
-# All rights reserved - Do Not Redistribute
-#
-
-# include_recipe 'iq::credentials'
 include_recipe 'deploy'
 include_recipe "mod_php5_apache2"
 include_recipe "mod_php5_apache2::php"
