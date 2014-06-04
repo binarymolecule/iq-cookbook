@@ -13,7 +13,7 @@ include_recipe "mod_php5_apache2"
 include_recipe "mod_php5_apache2::php"
 
 node[:deploy].each do |application, deploy|
-  if deploy[:application_type] != 'iq'
+  unless application == "iq" and deploy[:application_type] == "other"
     Chef::Log.debug("Skipping application #{application} as it is not an iq app")
     next
   end
