@@ -30,6 +30,13 @@ node[:deploy].each do |application, deploy|
     content "Include #{deploy[:current_path]}/vhosts/sites/"
   end
   
+  template "#{node[:apache][:dir]}/conf.d/sni" do
+    source "sni.erb"
+    mode 0660
+    group deploy[:group]
+    owner deploy[:owner]
+  end
+  
   link "/srv/www/iq/vhosts" do
     to "#{deploy[:current_path]}/vhosts"
   end
